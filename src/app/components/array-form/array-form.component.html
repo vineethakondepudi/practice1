@@ -1,0 +1,13 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <label>Name:</label>
+    <input type="text" name="name" formControlName="name" />
+    <div formArrayName="address">
+        <div *ngFor="let addresses of address.controls; let i = index">
+            <label>Address {{ i+ 1}}: </label>
+            <input type="text" [formControlName]="i" />
+            <button type="button" (click)="removeAddress(i)">Remove Address</button>
+        </div>
+        <button type="button" (click)="addAddress()">Add Address</button>
+    </div>
+    <button [disabled]="myForm.invalid">Submit</button>
+</form>

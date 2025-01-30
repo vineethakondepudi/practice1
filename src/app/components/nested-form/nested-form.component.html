@@ -1,0 +1,11 @@
+<form [formGroup]="myForm" (ngSubmit)="handleChange()">
+    <label>Name: </label>
+    <input type="text" name="name" formControlName="name"/>
+    <div formGroupName="address">
+        <label>Dist: </label>
+    <input type="text" name="dist" formControlName="dist"/>
+    <label>Mandal: </label>
+    <input type="text" name="mandal" formControlName="mandal"/>
+    </div>
+    <button [disabled]="myForm.invalid">Submit</button>
+</form>

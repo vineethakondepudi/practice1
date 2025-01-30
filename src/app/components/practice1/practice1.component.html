@@ -1,0 +1,26 @@
+<h1>{{name | uppercase}}</h1>
+<img [src]="imgUrl"/>
+<button [disabled]="value">Submit</button>
+<button (click)="increase()">Increase</button>
+<!-- <p>{{number}}</p> -->
+<input [(ngModel)]="names" placeholder="Enter you name"/>
+<p>{{names}}</p>
+<h1 *ngIf="ngIfs">Vineetha Kondepudi</h1>
+<ul>
+    <li *ngFor="let item of items">{{item}}</li>
+</ul>
+
+<div [ngStyle]="{'color':color}">Ng Style</div>
+<div [ngClass]="{'active': isActive, 'inActive': isInActive}">Ng Class</div>
+<h1>{{ today | date: 'shortDate' }}</h1>
+<div class="bg-white p-6 shadow rounded">
+    <ng-container >
+      <canvas baseChart style="height: 24px; width: 26px;" [data]="barChartData" [type]="barChartType">
+      </canvas>
+      <h3 class="text-center mt-4 font-semibold">Monthly Reports</h3>
+    </ng-container>
+    <ng-template #noData>
+      <p class="text-center text-gray-500">No data found for the selected month</p>
+    </ng-template>
+  </div>
+  
