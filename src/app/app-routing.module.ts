@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { authGuard } from './components/auth.guard';
+import { authChildGuard } from './components/auth-child.guard';
 
 const routes: Routes = [
   {
@@ -42,39 +44,68 @@ const routes: Routes = [
       import('./components/array-form/array-form.component').then((m) => m.ArrayFormComponent),
   },
   {
-    path:'observable',
+    path: 'observable',
     title: 'Observable',
-    loadComponent: () => 
-      import('./components/observable/observable.component').then((m)=> m.ObservableComponent)
-  },
-  {
-    path:'dataSet',
-    title:'Data Set',
     loadComponent: () =>
-      import('./components/data-set/data-set.component').then((m)=>m.DataSetComponent)
+      import('./components/observable/observable.component').then((m) => m.ObservableComponent)
   },
   {
-    path:'async',
+    path: 'dataSet',
+    title: 'Data Set',
+    loadComponent: () =>
+      import('./components/data-set/data-set.component').then((m) => m.DataSetComponent)
+  },
+  {
+    path: 'async',
     title: 'Async Operations',
-    loadComponent: () => 
-      import('./components/async/async.component').then((m)=>m.AsyncComponent)
+    loadComponent: () =>
+      import('./components/async/async.component').then((m) => m.AsyncComponent)
   },
   {
-    path:'pra',
-    title:'Practice Component',
-    loadComponent: () => import('./components/practice/practice.component').then((m)=>m.PracticeComponent)
+    path: 'pra',
+    title: 'Practice Component',
+    loadComponent: () => import('./components/practice/practice.component').then((m) => m.PracticeComponent)
   },
   {
-    path:'life',
-    title:'Life Cycle Methods',
-    loadComponent: ()=> import('./components/life-cycle/life-cycle.component')
-    .then((m)=>m.LifeCycleComponent)
+    path: 'life',
+    title: 'Life Cycle Methods',
+    loadComponent: () => import('./components/life-cycle/life-cycle.component')
+      .then((m) => m.LifeCycleComponent)
   },
   {
-    path:'life1',
-    title:'Life Cycle Methods1',
-    loadComponent: ()=> import('./components/life-cycle1/life-cycle1.component')
-    .then((m)=>m.LifeCycle1Component)
+    path: 'life1',
+    title: 'Life Cycle Methods1',
+    loadComponent: () => import('./components/life-cycle1/life-cycle1.component')
+      .then((m) => m.LifeCycle1Component)
+  },
+  {
+    path: 'login',
+    title: 'Login Component',
+    loadComponent: () => import('./components/login/login.component')
+      .then((m) => m.LoginComponent)
+  },
+  {
+    path: 'dashboard',
+    title: 'Dashboard Component',
+    canActivate: [authGuard],
+    canActivateChild: [authChildGuard],
+    loadComponent: () => import('./components/dashboard/dashboard.component')
+      .then((m) => m.DashboardComponent),
+      children:[{
+        path:'profile',
+        title:'Profile Component',
+        loadComponent: ()=> import('./components/profile/profile.component')
+        .then((m)=>m.ProfileComponent)
+      },
+      {
+        path:'setting',
+        title:'Setting Component',
+        loadComponent: ()=> import('./components/settings/settings.component')
+        .then((m)=>m.SettingsComponent)
+      }]
+  },
+  {
+    path: '**', redirectTo: 'login'
   }
 ];
 
