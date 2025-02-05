@@ -15,6 +15,6 @@ export default class Practice2Component {
 
   handleChange(){
     this.message = "New Message";
-    // this.isVisible = !this.isVisible;
+    this.isVisible = !this.isVisible;
   }
 }

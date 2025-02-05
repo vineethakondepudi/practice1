@@ -12,14 +12,14 @@ import { Subscription, interval } from 'rxjs';
 })
 export class LifeCycleComponent {
   @Input() sampleChanges: string = '';
-  // private mySubscription : Subscription;
+  private mySubscription : Subscription;
 
 constructor( private service:Pra1Service){
   console.log("Constructor");
-  // this.mySubscription = interval(3000).subscribe((count)=>{
-  //   console.log(`Count:${count}`);
+  this.mySubscription = interval(3000).subscribe((count)=>{
+    console.log(`Count:${count}`);
     
-  // })
+  })
 }
 ngOnChanges(changes:SimpleChange){
   console.log("ngOnChanges",changes);
@@ -39,7 +39,7 @@ ngDoCheck(){
   
 }
 ngOnDestroy(){
-  // this.mySubscription.unsubscribe();
+  this.mySubscription.unsubscribe();
   console.log("ngOnDestroy");
   
 }
