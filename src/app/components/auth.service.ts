@@ -15,7 +15,8 @@ constructor( private http:HttpClient, private router:Router ){
 
 
 login(loginId:string, password:string){
-return this.http.post<any>(this.apiUrl, {loginId,password}).subscribe(response => {
+  const headers = { 'Content-Type': 'application/json' };
+return this.http.post<any>(this.apiUrl, {loginId,password}, { headers }).subscribe(response => {
   if(response.statusCode === 200 && response.accessToken){
     localStorage.setItem('authToken',response.accessToken);
     localStorage.setItem('refershToken',response.refreshToken);
@@ -25,6 +26,7 @@ return this.http.post<any>(this.apiUrl, {loginId,password}).subscribe(response =
     alert(response.message);
   }
 }, error =>{
+  console.error("Error:", error);
   alert("Login failed, please check you credentials")
 })
 }

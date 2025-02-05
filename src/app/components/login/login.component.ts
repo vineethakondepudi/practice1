@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 export class LoginComponent {
 
   loginId: string =" ";
-  password: any="";
+  password: string="";
   constructor(private route:Router,private service:AuthService){
 
   }
