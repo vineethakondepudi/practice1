@@ -43,7 +43,6 @@ dataSource = new MatTableDataSource<any>();
   handleChage = async() => {
     this.service.getAsyncData().subscribe((data) =>{
       this.bindData = data;
-      // console.log(response);
     })
   }
 

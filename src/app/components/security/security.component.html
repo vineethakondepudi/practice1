@@ -1,0 +1,7 @@
+<p id="output"></p>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    document.getElementById("output").innerHTML = params.get("message");
+</script>
+
+<p [innerHTML]="sanitizedContent"></p>

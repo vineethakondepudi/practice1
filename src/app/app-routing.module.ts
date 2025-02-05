@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './components/auth.guard';
 import { authChildGuard } from './components/auth-child.guard';
+import { authDeactivateGuard } from './components/auth-deactivate.guard';
+import { AuthCanLoadGuard } from './components/auth-canload.guard';
 
 const routes: Routes = [
   {
@@ -94,18 +96,29 @@ const routes: Routes = [
       children:[{
         path:'profile',
         title:'Profile Component',
+        canDeactivate: [ authDeactivateGuard ],
         loadComponent: ()=> import('./components/profile/profile.component')
         .then((m)=>m.ProfileComponent)
       },
       {
         path:'setting',
         title:'Setting Component',
+        canLoad:[AuthCanLoadGuard],
         loadComponent: ()=> import('./components/settings/settings.component')
         .then((m)=>m.SettingsComponent)
       }]
   },
   {
+   path:"security",
+   title:"Security Component",
+   loadComponent:()=>import('./components/security/security.component')
+   .then((m)=>m.SecurityComponent)
+  },
+  {
     path: '**', redirectTo: 'login'
+  },
+  {
+    path:'', redirectTo:'/login', pathMatch:'full'
   }
 ];
 

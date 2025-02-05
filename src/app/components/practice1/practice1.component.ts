@@ -1,7 +1,7 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ChartConfiguration, ChartType, ChartEvent, Chart, ChartOptions } from 'chart.js';
+import { ChartType } from 'chart.js';
 import { NgChartsModule, BaseChartDirective } from 'ng2-charts';
 import { Pra1Service } from '../services/pra1.service';
 export interface ChartData {
